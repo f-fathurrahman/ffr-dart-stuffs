@@ -1,4 +1,3 @@
-%\documentclass[a4paper,11pt]{article} % print setting
 \documentclass[a4paper,11pt]{article} % screen setting
 
 \usepackage[a4paper]{geometry}
@@ -111,22 +110,17 @@ Perhatikan demonstrasi yang akan dilakukan mengenai penggunaan \txtinline{cmder}
 
 Download release beta channel pada laman:
 
-
 Tambahkan ke path berikut ke environment variable
-\txtinline{C:\Users\jendela\flutter\bin}
-\txtinline{C:\Users\jendela\flutter\bin\cache\dart-sdk\bin}
-
-Alternatif
-Edit file
-\begin{textcode}
-\txtinline{C:\Users\jendela\cmder\config\user_profile.cmd}
-\end{textcode}
-
 \begin{textcode}
 set "PATH=C:\Users\jendela\flutter\bin;%PATH%"
 set "PATH=C:\Users\jendela\flutter\bin\cache\dart-sdk\bin
 \end{textcode}
 
+
+Alternatif: Edit file
+\begin{textcode}
+C:\Users\jendela\cmder\config\user_profile.cmd
+\end{textcode}
 
 {\footnotesize\url{https://flutter.dev/docs/development/tools/sdk/releases}}
 
@@ -136,7 +130,10 @@ set "PATH=C:\Users\jendela\flutter\bin\cache\dart-sdk\bin
 
 Perintah:
 
+Jika menggunakan Flutter channel stable:
 \begin{textcode}
+flutter channel beta
+flutter upgrade
 flutter config --enable-web
 \end{textcode}
 
