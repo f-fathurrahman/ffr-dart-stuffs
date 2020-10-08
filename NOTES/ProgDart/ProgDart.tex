@@ -1,0 +1,394 @@
+\documentclass[a4paper,11pt]{article} % screen setting
+
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=1.5cm,bmargin=1.5cm,lmargin=1.5cm,rmargin=1.5cm}
+
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
+
+%\usepackage{fontspec}
+\usepackage[libertine]{newtxmath}
+\usepackage[no-math]{fontspec}
+\setmainfont{Linux Libertine O}
+\setmonofont{DejaVu Sans Mono}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{xcolor}
+
+% DARKMODE
+%\pagecolor[rgb]{0,0,0} %black
+%\color[rgb]{0.8,0.8,0.8} %grey
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{minted}
+
+\newminted{dart}{breaklines,fontsize=\footnotesize}
+\newminted{bash}{breaklines,fontsize=\footnotesize}
+\newminted{text}{breaklines,fontsize=\footnotesize}
+
+\newcommand{\txtinline}[1]{\mintinline[breaklines,fontsize=\footnotesize]{text}{#1}}
+\newcommand{\dartinline}[1]{\mintinline[breaklines,fontsize=\footnotesize]{python}{#1}}
+
+\newmintedfile[pythonfile]{python}{breaklines,fontsize=\footnotesize}
+
+\definecolor{mintedbg}{rgb}{0.90,0.90,0.90}
+\usepackage{mdframed}
+\BeforeBeginEnvironment{minted}{
+    \begin{mdframed}[backgroundcolor=mintedbg,%
+        topline=false,bottomline=false,%
+        leftline=false,rightline=false]
+}
+\AfterEndEnvironment{minted}{\end{mdframed}}
+
+
+\usepackage{setspace}
+
+\onehalfspacing
+
+\usepackage{appendix}
+
+
+\newcommand{\highlighteq}[1]{\colorbox{blue!25}{$\displaystyle#1$}}
+\newcommand{\highlight}[1]{\colorbox{red!25}{#1}}
+
+
+\begin{document}
+
+
+\title{Dasar Pemrograman Bahasa Dart}
+\author{Fadjar Fathurrahman}
+\date{}
+\maketitle
+
+\section{Tujuan}
+
+\begin{itemize}
+\item Mengenal dan mengunakan tools yang tersedia pada Dart SDK
+\item Memahami konsep dasar bahasa pemrograman Dart
+\item Mampu membuat program sederhana pada console dengan menggunakan Dart
+\end{itemize}
+
+\section{Persiapan}
+
+Pastikan bahwa program-program atau pengaturan berikut ini berjalan
+dengan baik pada komputer yang Anda gunakan.
+
+\subsection{(Windows only) cmder}
+Pastikan bahwa \txtinline{cmder} dengan Git for Windows sudah terpasang
+dan berjalan dengan baik. Jika belum silakan pasang terlebih dahulu.
+\txtinline{cmder} dapat diunduh pada tautan berikut:
+
+{\footnotesize
+\url{https://github.com/cmderdev/cmder/releases/download/v1.3.16/cmder.zip}
+}
+
+\subsection{Flutter SDK}
+
+Pastikan bahwa Flutter SDK sudah terpasang dengan baik. Kita akan mengasumsikan
+bahwa yang digunakan adalah Flutter channel beta yang memungkinkan kita untuk
+membuat aplikasi Web dan juga Android atau iOS.
+
+Flutter SDK (channel beta) dapat diunduh pada tautan berikut ini.
+Cari Beta Channel dan pilih yang file yang sesuai dengan sistem operasi
+yang Anda gunakan.
+
+{\footnotesize
+\url{https://flutter.dev/docs/development/tools/sdk/releases}
+}
+
+Flutter SDK sudah memiliki Dart SDK sehingga kita tidak perlu menginstal
+Dart SDK secara terpisah.
+
+\subsection{Setting PATH}
+
+Pastikan bahwa Anda sudah dapat mengakses perintah \txtinline{flutter}
+dan \txtinline{dart} pada \txtinline{cmder}. Jika belum, Anda dapat menambahkannya
+dengan cara mengedit file
+\begin{textcode}
+C:\Users\jendela\cmder\config\user_profile.cmd
+\end{textcode}
+Silakan menyesuaikan bagian
+\begin{textcode}
+\txtline{C:\Users\jendela\cmder}
+\end{textcode}
+menjadi lokasi di mana \txtinline{cmder} berada.
+
+Pada file \txtinline{user_profile.cmd}, silakan tambahkan baris berikut
+\begin{textcode}
+set "PATH=C:\Users\jendela\flutter\bin;%PATH%"
+set "PATH=C:\Users\jendela\flutter\bin\cache\dart-sdk\bin
+\end{textcode}
+
+
+\subsection{Visual Studio Code atau text editor lain}
+
+Visual Studio Code (VSCode) dapat diunduh pada tautan berikut.
+
+{\footnotesize
+\url{https://code.visualstudio.com/download}
+}
+
+Pasang ektensi Flutter pada VSCode. Instruksi terkait dapat ditemukan pada
+tautan-tautan berikut:
+
+{\footnotesize
+\url{https://flutter.dev/docs/get-started/editor?tab=vscode}
+}
+
+{\footnotesize
+\url{https://flutter.dev/docs/development/tools/vs-code}
+}
+
+
+\section{Struktur kode program Dart}
+
+Bahasa pemrograman Dart memiliki banyak kesamaan dengan bahasa
+pemrograman C/C++.
+
+Program Dart memiliki satu entry point, yaitu fungsi \dartinline{main}.
+Fungsi ini biasanya diberikan classifier atau tipe \dartinline{void}.
+\begin{dartcode}
+void main() {
+  // kode program
+}
+\end{dartcode}
+
+Suatu program Dart dapat terdiri dari beberapa fungsi yang dapat didefinisikan
+pada di satu file yang sama.
+
+
+Dart mendukung tiga tipe komentar.
+\begin{dartcode}
+// Inline comment
+
+/*
+Block comment.
+Bisa mencakup lebih dari satu baris
+*/
+
+/// Untuk Dokumentasi
+///
+/// Berikut ini adalah dokumentasi kode.
+\end{dartcode}
+
+Tipe data dasar pada Dart mirip dengan tipe data yang ada pada C/C++.
+Contoh: \dartinline{int}, \dartinline{double} dan \dartinline{String}.
+Perbedaannya adalah semua data tersebut pada Dart merupakan suatu object.
+Kita akan mempelajari mengenai object-oriented programming pada praktikum
+selanjutnya.
+
+
+\section{Latihan Program}
+
+Program Dart ditulis dalam file dengan ekstensi \txtinline{.dart}.
+
+Untuk program pertama, silakan buka VSCode dan ketikkan kode berikut ini.
+Beri nama file tersebut dengan nama \txtinline{hello.dart} atau nama yang lain.
+Usahakan nama tersebut tidak mengandung karakter spasi atau karakter tidak umum
+yang lain. Ingat lokasi di mana Anda menyimpan file ini. Sangat disarankan untuk menyimpan
+file ini pada satu direktori atau folder tersendiri.
+
+\begin{dartcode}
+void main() {
+  print('Hello Dart');
+}
+\end{dartcode}
+
+Buka \txtinline{cmder}, kemudian pindah ke direktori atau folder di mana Anda
+menyimpan file \txtinline{hello.dart} sebelumnya.
+Gunakan perintah \txtinline{cd} untuk berpindah dari satu direktori ke
+direktori lainnya.
+Jika hal ini sudah dilakukan, ketikkan perintah berikut ini pada
+\txtinline{cmder}. Apa yang Anda amati?
+
+\begin{textcode}
+dart hello.dart
+\end{textcode}
+
+Jalan juga perintah berikut.
+\begin{textcode}
+dart2native hello.dart
+\end{textcode}
+Perintah ini akan menghasilkan file baru. Bisakah Anda menemukan file tersebut?
+
+Perhatikan bawah, pada sistem operasi Windows Anda mungkin perlu menambahkan ekstensi
+\txtinline{.exe} sehingga perintah sebelumnya menjadi
+\txtinline{dart.exe} dan \txtinline{dart2native.exe}
+
+\subsection{Tugas 1}
+
+Perhatikan kode berikut. Ketikkan pada file yang berbeda.
+\begin{dartcode}
+void main() {
+  sayHello();
+}
+
+void sayHello() {
+  print('Hello Dart');
+}
+\end{dartcode}
+
+Dengan menggunakan pengetahuan bahasa C yang sudah Anda pelajari, apakah
+output dari program tersebut?
+
+Gunakan perintah \txtinline{dart} atau \txtinline{dart2native}.
+
+
+\subsection{Tugas 2}
+
+Perhatikan kode berikut. Ketikkan pada file yang berbeda.
+\begin{dartcode}
+void main() {
+  String nama = 'Darto';
+  sayHello(nama);
+}
+  
+void sayHello(String name) {
+  print('Hello $name');
+}
+\end{dartcode}
+
+Apakah keluaran dari program ini?
+
+
+\subsection{Tugas 3}
+
+Perhatikan kode berikut. Ketikkan pada file yang berbeda.
+\begin{dartcode}
+void main() {
+  String Nama = 'Darto';
+  String Name = 'Parto';
+  sayHello(nama);
+  sayHello(name);
+}
+  
+void sayHello(String nama) {
+  print('Hello $name');
+}
+\end{dartcode}
+
+Apakah keluaran dari program ini? Apakah ada error yang dilaporkan?
+Apakah Anda dapat memperbaiki program ini?
+
+
+\subsection{Tugas 4}
+
+Perhatikan kode program berikut.
+\begin{dartcode}
+void main() {
+  List<String> daftar_nama = [
+    'Darto',
+    'Parto',
+    'Sule',
+    'Andre',
+    'Nunung'
+  ];
+
+  for(var nama in daftar_nama) {
+    sayHello(nama);
+  }
+}
+
+void sayHello(String name) {
+  print('Hello $name');
+}
+\end{dartcode}
+
+Apakah keluaran dari program tersebut?
+
+Program ini mengenalkan penggunaan tipe data (atau kelas) \dartinline{List} yang mirip
+dengan array pada C/C++.
+
+
+\subsection{Tugas 5}
+
+Perhatikan program berikut.
+\begin{dartcode}
+import 'dart:io';
+
+void main() {
+  stdout.writeln('Say hello to my bro');
+  String input = stdin.readLineSync();
+  sayHello(input);
+}
+
+void sayHello(String name) {
+  print('Hello $name, my bro. Nice to meet you');
+}  
+\end{dartcode}
+
+Apakah keluaran dari program tersebut?
+
+Catatan: Anda perlu menginputkan nama Anda atau teks lain, diikuti dengan tekan
+tombol Enter pada keyboard.
+
+Bandingkan program tersebut dengan program berikut ini.
+Apakah ada perbedaan yang Anda amati?
+\begin{dartcode}
+import 'dart:io';
+
+void main() {
+  stdout.writeln('Say hello to my bro');
+  stdout.write('Your name bro? ');
+  String input = stdin.readLineSync();
+  sayHello(input);
+}
+
+void sayHello(String name) {
+  print('Hello $name, my bro. Nice to meet you');
+}  
+\end{dartcode}
+
+Dari pengamatan di atas apakah Anda dapat memberikan perbedaan atau persamaan
+antara:
+\begin{itemize}
+\item \dartinline{print}
+\item \dartinline{stdout.write}
+\item \dartinline{stdout.writeln} 
+\end{itemize}
+
+
+\section{Tugas tambahan 1}
+
+Apakah yang dimaksud dengan variabel PATH dan environment variable
+pada Windows / OSX / Linux ?
+Bagaimana cara mengubah variabel ini?
+Bacaan berikut ini dapat dijadikan acuan (salah satunya).
+
+{\footnotesize
+\url{https://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them}
+
+\url{https://en.wikipedia.org/wiki/PATH_(variable)}
+
+\url{https://www.computerhope.com/issues/ch000549.htm}
+
+\url{https://superuser.com/questions/502358/easier-way-to-change-environment-variables-in-windows-8}
+}
+
+
+\section{Tugas tambahan 2}
+
+Sintaks untuk melakukan percabangan/kondisional dan looping pada Dart juga sangat mirip
+dengan C/C++. Buatlah masing-masing 4 program sederhana untuk demonstrasi
+percabangan dan looping pada Dart.
+
+Referensi:
+
+{\footnotesize
+\url{https://dart.dev/guides/language/language-tour}
+}
+
+
+
+
+
+\bibliographystyle{unsrt}
+\bibliography{BIBLIO}
+
+\end{document}
