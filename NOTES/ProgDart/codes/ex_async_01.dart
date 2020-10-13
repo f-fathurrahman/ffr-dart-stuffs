@@ -2,7 +2,7 @@
 
 import 'dart:async';
 
-const Duration delay = const Duration(milliseconds: 200);
+const Duration delay = const Duration(milliseconds: 5000);
 
 // This function does not use async/await, just the standard Future API
 Future loadLastName(String prefix) {
@@ -22,7 +22,10 @@ Future loadLastName2(String prefix) async {
 
 void main() async {
   var thorsLastName = await loadLastName('Odin');
+  print('Pass here 1');
+  
   var lokisLastName = await loadLastName('Laufey');
+  print('Pass here 2');
 
   print('Thor $thorsLastName');
   print('Loki $lokisLastName');
