@@ -11,56 +11,42 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('😍 The AppBar title 😍')),
+        body: MyBodyText(),
+      )
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class MyBodyText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+    return Column(
+      children: [
+        Text('😍 Flutter Example 😍', style: TextStyle(fontSize: 40, fontFamily: 'Monaco')),
+        Text('Flutter again again', style: Theme.of(context).textTheme.headline3),
+        Text(
+          'Text by TextStyle',
+          style: TextStyle(fontSize: 30, color: Colors.redAccent),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        Row(children: [
+          Text('🙏🙏 Long Text 1 😁 🙏🙏', style: TextStyle(fontSize: 25)),
+          Text('🙏🙏 Long Text 2 😁 🙏🙏', style: TextStyle(fontSize: 25)),
+          Text('🙏🙏 Long Text 3 😡 🙏🙏', style: TextStyle(fontSize: 25)),
+        ]),
+        Text('😘😘😘😘😘😘', style: TextStyle(fontSize: 40)),
+        Text('😍😍😍😍😍😍', style: TextStyle(fontSize: 50)),
+        Text('😂', style: TextStyle(fontSize: 80)),
+        Text('مان انا',
+          style: TextStyle(fontSize: 40,
+          fontFamily: 'Amiri Quran')
+        ),
+      ],
     );
   }
 }
