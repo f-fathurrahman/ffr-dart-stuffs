@@ -5,4 +5,9 @@ void main() {
   print('a = $a');
   print('b = $b');
   print('c = a / b = $c');
+
+  int i = 3;
+  int j = 2;
+  print(i/j);
+  print(i~/j); // integer division operator
 }
