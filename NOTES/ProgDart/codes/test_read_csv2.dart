@@ -11,7 +11,11 @@ class Mahasiswa {
   Mahasiswa(this.nama, this.NIM, this.uts, this.uas, this.praktikum);
 
   String toString() {
-    return 'Name = $nama, NIM = $NIM';
+    return 'Name = $nama\nNIM = $NIM';
+  }
+
+  double hitungNilaiAkhir() {
+    return 0.3*uts + 0.3*uas + 0.4*praktikum;
   }
 }
 
@@ -31,5 +35,10 @@ void main() {
   }
   print(tabelMahasiswa);
 
+  for(var m in tabelMahasiswa){
+    var nilai_akhir = m.hitungNilaiAkhir();
+    print(m);
+    print("Nilai akhir = $nilai_akhir");
+  }
 
 }
