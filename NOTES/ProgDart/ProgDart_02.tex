@@ -1,0 +1,332 @@
+\documentclass[a4paper,11pt]{article} % screen setting
+
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=1.5cm,bmargin=1.5cm,lmargin=1.5cm,rmargin=1.5cm}
+
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
+
+%\usepackage{fontspec}
+\usepackage[libertine]{newtxmath}
+\usepackage[no-math]{fontspec}
+\setmainfont{Linux Libertine O}
+\setmonofont{DejaVu Sans Mono}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{xcolor}
+
+% DARKMODE
+%\pagecolor[rgb]{0,0,0} %black
+%\color[rgb]{0.8,0.8,0.8} %grey
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{minted}
+
+\newminted{dart}{breaklines,fontsize=\footnotesize}
+\newminted{bash}{breaklines,fontsize=\footnotesize}
+\newminted{text}{breaklines,fontsize=\footnotesize}
+
+\newcommand{\txtinline}[1]{\mintinline[breaklines,fontsize=\footnotesize]{text}{#1}}
+\newcommand{\dartinline}[1]{\mintinline[breaklines,fontsize=\footnotesize]{python}{#1}}
+
+\newmintedfile[pythonfile]{python}{breaklines,fontsize=\footnotesize}
+
+\definecolor{mintedbg}{rgb}{0.90,0.90,0.90}
+\usepackage{mdframed}
+\BeforeBeginEnvironment{minted}{
+    \begin{mdframed}[backgroundcolor=mintedbg,%
+        topline=false,bottomline=false,%
+        leftline=false,rightline=false]
+}
+\AfterEndEnvironment{minted}{\end{mdframed}}
+
+
+\usepackage{setspace}
+
+\onehalfspacing
+
+\usepackage{appendix}
+
+
+\newcommand{\highlighteq}[1]{\colorbox{blue!25}{$\displaystyle#1$}}
+\newcommand{\highlight}[1]{\colorbox{red!25}{#1}}
+
+
+\begin{document}
+
+
+\title{Pengenalan Pemrograman Berbasis Objek dengan Dart}
+\author{Fadjar Fathurrahman}
+\date{}
+\maketitle
+
+\section{Tujuan}
+
+\begin{itemize}
+\item Mengenal konsep dasar pemrograman berbasis objek dan implementasinya dalam Dart.
+\item Mampu membuat program sederhana berdasarkan pemrograman berbasis objek
+\end{itemize}
+
+\section{Pemrograman berbasis objek}
+
+Pemrograman berbasis dan berorientasi objek (\textit{object oriented programming},
+sering disingkat OOP)
+adalah suatu paradigma pemrograman yang berpusat pada konsep "objek"
+yang secara garis besar terdiri dari:
+\begin{itemize}
+\item data, \textit{fields}, atribut, atau \textit{properties}
+\item prosedur, fungsi, atau metode
+\end{itemize}
+
+"Objek" dapat berupa abstraksi dari suatu objek fisik (benda) atau nonfisik yang
+dapat ditemukan pada dunia nyata, seperti manusia, mahasiswa, hewan, tumbuhan,
+bangunan, universitas, sekolah, sensor, pabrik, dan sebagainya.
+
+Terdapat banyak bahasa pemrograman yang mendukung OOP seperti Java, C++, Python,
+C\#, dan Dart. Sebagian besar bahasa pemrograman tersebut mengimplementasikan
+OOP dengan menggunakan \textit{class}, yang dapat dianggap sebagai cetak biru
+(blue print) dari sebuah objek. Dalam hal ini, objek dikatakan sebagai \textit{instance}
+dari sebuah \textit{class}.
+
+Kumpulan dari data dan prosedur dari sebuah objek yang didefinisikan pada suatu
+\textit{class} sering juga disebut dengan \textit{class members}.
+
+\subsection{Contoh sederhana}
+
+Sebagai contoh, kita ingin mendeskripsikan suatu objek kucing yang akan
+diimplementasikan dalam suatu kelas dengan nama \txtinline{Kucing}.
+Kelas \txtinline{Kucing} akan memiliki field berupa nama, warna, dan umur.
+
+\begin{dartcode}
+class Kucing {
+  String nama;
+  String warna;
+  int umur;
+}
+\end{dartcode}
+
+Untuk membuat suatu instance dari \txtinline{Kucing}, kita dapat mengunakan
+kode sebagai berikut:
+\begin{dartcode}
+Kucing kucingku = Kucing();
+\end{dartcode}
+Kemudian, kita dapat mengakses member dari \txtinline{kucingku} sebagai
+berikut:
+\begin{dartcode}
+kucingku.nama = 'Ronaldo';
+kucingku.warna = 'putih';
+kucingku.umur = 2;
+\end{dartcode}
+
+Sekarang \txtinline{kucingku} dapat dianggap suatu variabel dan dapat digunakan
+dalam kode Dart yang lain. Misalnya kita dapat mendeklarasikan suatu fungsi
+dengan argumen bertipe \txtinline{Kucing}.
+\begin{dartcode}
+void sayHello(Kucing k) {
+  print('Miaw, namaku adalah ${k.nama}');
+}
+\end{dartcode}
+
+
+\subsection{Konstruktor dan member function}
+Selain dengan cara manual, kita dapat menginisialisasi suatu objek dengan
+menggunakan metode atau fungsi khusus yang dinamai dengan konstruktor.
+Dart menyediakan sintaks khusus untuk konstruktor. Program diatas dapat
+ditulis sebagai berikut.
+\begin{dartcode}
+class Kucing {
+  String nama;
+  String warna;
+  int umur;
+
+  Kucing(this.nama, this.warna, this.umur); // konstruktor
+}
+  
+void sayHello(Kucing k) {
+  print('Miaw, namaku adalah ${k.nama}');
+}
+
+void main() {
+  Kucing kucingku = Kucing('Ronaldo', 'hitam', 1);
+  sayHello(kucingku);
+}
+\end{dartcode}
+
+Sintaks yang digunakan pada konstruktor di atas merupakan versi ringkas
+dari konstruktor berikut.
+\begin{dartcode}
+Kucing(String nama, String warna, int umur) {
+  this.nama = nama;
+  this.warna = warna;
+  this.umur = umur;
+}
+\end{dartcode}
+
+Kita juga dapat membuat fungsi \txtinline{sayHello} menjadi fungsi member.
+\begin{dartcode}
+class Kucing {
+  String nama;
+  String warna;
+  int umur;
+
+  Kucing(this.nama, this.warna, this.umur);
+
+  void sayHello() {
+    print('Miaw, namaku adalah ${this.nama}');
+  }
+
+}
+  
+void main() {
+  Kucing kucingku = Kucing('Ronaldo', 'hitam', 1);
+  kucingku.sayHello();
+}
+\end{dartcode}
+
+Kelas \txtinline{Kucing} dapat digunakan untuk membuat objek atau instance
+yang lain. Misalnya:
+\begin{dartcode}
+void main() {
+  Kucing kucingku = Kucing('Ronaldo', 'hitam', 1);
+  kucingku.sayHello();
+
+  Kucing kucingmu = Kucing('Messi', 'putih', 2);
+  kucingmu.sayHello();
+}
+\end{dartcode}
+
+\subsection{Contoh lain}
+
+\begin{dartcode}
+class Ayam {
+  String nama;
+  String warna;
+  int umur;
+  String gender;
+
+  Ayam(String nama, String warna, int umur, String gender) {
+    this.nama = nama;
+    this.warna = warna;
+    this.umur = umur;
+    this.gender = gender;
+  }
+
+  void sayHello() {
+    if(this.gender == 'jantan') {
+      print('Kukuruyuk, namaku adalah ${this.nama}');
+    }
+    else if(this.gender == 'betina') {
+      print('Petok petok, namaku adalah ${this.nama}');
+    }
+    else {
+      print('Kukuruyuk petok, namaku adalah ${this.nama}');
+    }
+  }
+
+}
+  
+void main() {
+  Ayam ayam1 = Ayam('Andre', 'hitam', 1, 'jantan');
+  ayam1.sayHello();
+
+  Ayam ayam2 = Ayam('Nunung', 'hitam', 1, 'betina');
+  ayam2.sayHello();
+
+  Ayam ayam3 = Ayam('XXX', 'hitam', 1, 'lainnya');
+  ayam3.sayHello();
+}
+\end{dartcode}
+
+\subsection{Parameter fungsi opsional dengan kata kunci}
+
+\begin{dartcode}
+void myFunc({int a: 2, int b: 3, String name: 'Sule'}) {
+  print('a = $a');
+  print('b = $b');
+  print('name = $name');
+}
+  
+void main() {
+  myFunc();
+  myFunc(a: 123);
+  myFunc(name: 'Andre');
+}
+\end{dartcode}
+
+
+
+\subsection{Inheritance}
+
+Pada banyak kasus kita dapat menemukan bahwa terdapat suatu hierarki pada banyak
+\textit{class} yang kita buat. Misalnya, kita dapat menggabungkan kelas
+\txtinline{Cat} dan \txtinline{Chicken} ke dalam suatu \textit{super-class}
+atau \textit{parent class} \txtinline{Animal}.
+Dalam kasus ini dikatakan bahwa \txtinline{Cat} dan \txtinline{Chicken} mewarisi
+atau \textit{inherited from} \txtinline{Animal}
+
+\begin{dartcode}
+class Animal {
+  String name;
+  int legCount;
+}
+  
+class Cat extends Animal {
+  String makeNoise() {
+    print('Miaw');
+  }
+}
+  
+class Chicken extends Animal {
+  String makeNoise() {
+    print('Kukuruyuk');
+  }
+}
+  
+void main() {
+  Cat cat = Cat();
+  cat.name = 'Nora';
+  cat.legCount = 4;
+  print(cat);
+  cat.makeNoise();
+  
+  Chicken chicken = Chicken();
+  chicken.name = 'Kukuk';
+  chicken.legCount = 2;
+  print(chicken);
+  chicken.makeNoise();
+}
+\end{dartcode}
+
+\section{Tugas}
+
+Buatlah sebuah program untuk mengolah nilai mahasiswa. Nilai mahasiswa terdiri
+dari komponen nilai UTS, nilai UAS, dan nilai praktikum. Nilai akhir dihitung dari
+hasil pembobotan komponen tiga komponen nilai tersebut (Anda dapat menentukan
+sendiri). Nilai akhir juga dapat dikonversi menjadi dalam skala huruf seperti
+A, AB, B, BC, C, dan E (Anda juga dapat menentukan aturan konversi yang diperlukan).
+Data nilai mahasiswa dibaca melalui suatu file CSV (comma-separated values):
+
+\begin{textcode}
+Andre;A19001;90;80;85
+Brewok;A19002;60;50;70
+Cucun;A19003;70;80;80
+Dodo;A19004;70;80;90
+.... dan seterusnya
+\end{textcode}
+
+Program ini dapat dibuat dengan menggunakan paradigma non-OOP, meskipun demikian
+kita akan menggunakan OOP untuk membuat program ini.
+Anda perlu mendefinisikan kelas \txtinline{Mahasiswa} beserta membernya untuk
+keperluan ini.
+
+
+\bibliographystyle{unsrt}
+\bibliography{BIBLIO}
+
+\end{document}
