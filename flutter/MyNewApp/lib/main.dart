@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,27 +28,10 @@ class MyApp extends StatelessWidget {
 class MyBodyText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('😍 Flutter Example 😍', style: TextStyle(fontSize: 40, fontFamily: 'Monaco')),
-        Text('Flutter again again', style: Theme.of(context).textTheme.headline3),
-        Text(
-          'Text by TextStyle',
-          style: TextStyle(fontSize: 30, color: Colors.redAccent),
-        ),
-        Row(children: [
-          Text('🙏🙏 Long Text 1 😁 🙏🙏', style: TextStyle(fontSize: 25)),
-          Text('🙏🙏 Long Text 2 😁 🙏🙏', style: TextStyle(fontSize: 25)),
-          Text('🙏🙏 Long Text 3 😡 🙏🙏', style: TextStyle(fontSize: 25)),
-        ]),
-        Text('😘😘😘😘😘😘', style: TextStyle(fontSize: 40)),
-        Text('😍😍😍😍😍😍', style: TextStyle(fontSize: 50)),
-        Text('😂', style: TextStyle(fontSize: 80)),
-        Text('مان انا',
-          style: TextStyle(fontSize: 40,
-          fontFamily: 'Amiri Quran')
-        ),
-      ],
+    return RichText(
+      text: TextSpan(text: 'Don\'t have an account? Long Text Long Text 1 Long Text 2 Long Text 3 Long Text 4 Long Text 5 Long Text 6''',
+        style: TextStyle(color: Colors.black, fontSize: 18)
+      ),
     );
   }
 }
