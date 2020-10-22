@@ -19,6 +19,13 @@ class Mahasiswa {
   }
 }
 
+String konversiNilai(double na) {
+  if(na <= 100 && na > 80) {
+    return "A";
+  }
+  // ...
+}
+
 void main() {
   List<Mahasiswa> tabelMahasiswa = List<Mahasiswa>();
 
@@ -38,7 +45,22 @@ void main() {
   for(var m in tabelMahasiswa){
     var nilai_akhir = m.hitungNilaiAkhir();
     print(m);
-    print("Nilai akhir = $nilai_akhir");
+    print('Nilai akhir = $nilai_akhir');
+    // konversi dari nilai angka ke huruf.
   }
+
+  var file = new File('new_data.csv');
+  var sink = file.openWrite();
+  for(var m in tabelMahasiswa) {
+    var nama = m.nama;
+    var nim = m.NIM;
+    var uts = m.uts;
+    var uas = m.uas;
+    var prak = m.praktikum;
+    var nilai_akhir = m.hitungNilaiAkhir();
+    //sink.write('${nama},${nim},${nilai_akhir}\n');
+    sink.writeln('${nama},${nim},${nilai_akhir}');
+  } 
+  sink.close();
 
 }
