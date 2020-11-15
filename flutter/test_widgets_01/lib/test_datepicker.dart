@@ -7,7 +7,6 @@ class TestDatePicker extends StatefulWidget {
 
 class _TestDatePickerState extends State<TestDatePicker> {
   
-  /// Which holds the selected date
   /// Defaults to today's date.
   DateTime selectedDate = DateTime.now();
 
