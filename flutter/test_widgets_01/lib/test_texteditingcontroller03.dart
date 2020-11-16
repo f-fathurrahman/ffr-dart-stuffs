@@ -9,11 +9,18 @@ class TestTextEditingController03 extends StatefulWidget {
 
 class _TestTextEditingController03 extends State<TestTextEditingController03> {
   final _controller = TextEditingController();
+  String _email = '';
 
   void dispose() {
     _controller.dispose();
     super.dispose();
   } // dispose
+
+  void _handleInput(String val) {
+    setState( () {
+      _email = val;
+    });
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +32,16 @@ class _TestTextEditingController03 extends State<TestTextEditingController03> {
             padding: const EdgeInsets.all(6),
             child: TextField(
               controller: _controller,
+              decoration: InputDecoration(
+                labelText: 'Email',
+                hintText: 'you@email.com',
+                icon: Icon(Icons.contact_mail),
+                border: OutlineInputBorder(),
+              ),
+              onChanged: _handleInput,
             ),
           ),
-          Text('You typed: ${_controller.text.toString()}'),
+          Text('You email: $_email', style: TextStyle(fontSize: 20)),
         ],
       )
     );
