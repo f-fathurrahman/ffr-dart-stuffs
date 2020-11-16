@@ -8,7 +8,11 @@ import 'package:flutter/material.dart';
 //import 'test_card_02.dart';
 //import 'test_verify_input_01.dart';
 //import 'my_home_01.dart';
-import 'test_inkwell_01.dart';
+//import 'test_inkwell_01.dart';
+//import 'test_texteditingcontroller01.dart';
+//import 'test_texteditingcontroller02.dart';
+import 'test_texteditingcontroller03.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -31,7 +35,10 @@ class MyApp extends StatelessWidget {
       //home: TestListView02(),
       //home: TestCard01(),
       //home: TestCard02(),
-      home: TestInkWell01(),
+      //home: TestInkWell01(),
+      //home: TestTextEditingController01(),
+      //home: TestTextEditingController02(),
+      home: TestTextEditingController03(),
       //home: InputControllerExamplesWidget(),
     );
   }
