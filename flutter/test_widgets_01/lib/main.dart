@@ -16,8 +16,8 @@ import 'package:test_widgets_01/test_checkbox01.dart';
 //import 'test_texteditingcontroller04.dart';
 //import 'test_texteditingcontroller05.dart';
 //import 'test_checkbox01.dart';
-import 'test_checkbox02.dart';
-
+//import 'test_checkbox02.dart';
+import 'test_checkbox03.dart';
 
 void main() {
   runApp(MyApp());
@@ -47,7 +47,8 @@ class MyApp extends StatelessWidget {
       //home: TestTextEditingController04(),
       //home: TestTextEditingController05(),
       //home: TestCheckbox01(),
-      home: TestCheckbox02(),
+      //home: TestCheckbox02(),
+      home: TestCheckbox03(),
       //home: InputControllerExamplesWidget(),
     );
   }
