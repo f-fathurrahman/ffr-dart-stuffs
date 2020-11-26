@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_widgets_01/test_checkbox01.dart';
+//import 'package:test_widgets_01/test_checkbox01.dart';
 //import 'test_datetimepicker.dart';
 //import 'test_datepicker.dart';
 //import 'test_timepicker.dart';
@@ -17,7 +17,8 @@ import 'package:test_widgets_01/test_checkbox01.dart';
 //import 'test_texteditingcontroller05.dart';
 //import 'test_checkbox01.dart';
 //import 'test_checkbox02.dart';
-import 'test_checkbox03.dart';
+//import 'test_checkbox03.dart';
+import 'example_input_01.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: true,
+      home: ExampleInput01(),
       //home: MyHome(),
       //home: TestDatetimePicker(),
       //home: TestDatePicker(),
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
       //home: TestTextEditingController05(),
       //home: TestCheckbox01(),
       //home: TestCheckbox02(),
-      home: TestCheckbox03(),
+      //home: TestCheckbox03(),
       //home: InputControllerExamplesWidget(),
     );
   }
