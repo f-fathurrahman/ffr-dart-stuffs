@@ -18,7 +18,8 @@ import 'package:flutter/material.dart';
 //import 'test_checkbox01.dart';
 //import 'test_checkbox02.dart';
 //import 'test_checkbox03.dart';
-import 'example_input_01.dart';
+//import 'example_input_01.dart';
+import 'example_form_01.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,8 +33,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      debugShowCheckedModeBanner: true,
-      home: ExampleInput01(),
+      debugShowCheckedModeBanner: false,
+      home: ExampleForm01Page(),
+      //home: ExampleInput01(),
       //home: MyHome(),
       //home: TestDatetimePicker(),
       //home: TestDatePicker(),
