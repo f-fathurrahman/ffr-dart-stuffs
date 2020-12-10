@@ -1,0 +1,120 @@
+\documentclass[a4paper,11pt]{article} % screen setting
+
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=1.5cm,bmargin=1.5cm,lmargin=1.5cm,rmargin=1.5cm}
+
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
+
+%\usepackage{fontspec}
+\usepackage[libertine]{newtxmath}
+\usepackage[no-math]{fontspec}
+\setmainfont{Linux Libertine O}
+\setmonofont{DejaVu Sans Mono}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{xcolor}
+
+% DARKMODE
+%\pagecolor[rgb]{0,0,0} %black
+%\color[rgb]{0.8,0.8,0.8} %grey
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{minted}
+
+\newminted{dart}{breaklines,fontsize=\footnotesize}
+\newminted{bash}{breaklines,fontsize=\footnotesize}
+\newminted{text}{breaklines,fontsize=\footnotesize}
+
+\newcommand{\txtinline}[1]{\mintinline[breaklines,fontsize=\footnotesize]{text}{#1}}
+\newcommand{\dartinline}[1]{\mintinline[breaklines,fontsize=\footnotesize]{python}{#1}}
+
+\newmintedfile[pythonfile]{python}{breaklines,fontsize=\footnotesize}
+
+\definecolor{mintedbg}{rgb}{0.90,0.90,0.90}
+\usepackage{mdframed}
+\BeforeBeginEnvironment{minted}{
+    \begin{mdframed}[backgroundcolor=mintedbg,%
+        topline=false,bottomline=false,%
+        leftline=false,rightline=false]
+}
+\AfterEndEnvironment{minted}{\end{mdframed}}
+
+
+%\usepackage{setspace}
+%\onehalfspacing
+
+\usepackage{appendix}
+
+\newcommand{\highlighteq}[1]{\colorbox{blue!25}{$\displaystyle#1$}}
+\newcommand{\highlight}[1]{\colorbox{red!25}{#1}}
+
+\newcounter{soal}[section]
+\newenvironment{soal}[1][]{\refstepcounter{soal}\par\medskip
+   \noindent \textbf{Soal~\thesoal. #1} \rmfamily}{\medskip}
+
+\begin{document}
+
+
+\title{Quiz Dart dan Flutter 1}
+\author{}
+\date{}
+\maketitle
+
+\begin{soal}
+Tuliskan path atau lokasi di mana Flutter dan Dart terinstalasi pada komputer Anda:
+\begin{itemize}
+\item Lokasi file \txtinline{flutter.exe} atau \txtinline{flutter.sh}
+\item Lokasi file \txtinline{dart.exe}
+\end{itemize}
+\end{soal}
+
+\begin{soal}
+Jelaskan yang dimaksud dengan object oriented programming dan berikan contoh sederhana
+pada bahasa Dart.
+\end{soal}
+
+\begin{soal}
+Jelaskan yang dimaksud dengan anynymous function pada Dart beserta contohnya.
+\end{soal}
+
+\begin{soal}
+Buat sebuah kelas sederhana pada Dart dengan spesifikasi berikut.
+\begin{itemize}
+\item Nama kelas \txtinline{SensorTemperatur}
+\item Data/field: nomor seri atau ID, jenis, dan hasil dan waktu pengukuran.
+\item Misalkan hasil dan waktu pengukuran berupa array dengan ukuran 100. Anda dapat menggunakan
+string untuk waktu pengukuran atau kelas \txtinline{DateTime} pada Dart.
+\item Fungsi-fungsi yang harus diimplementasikan:
+  \begin{itemize}
+  \item konstruktor
+  \item fungsi \txtinline{getTemperature} untuk mendapatkan hasil pengukuran.
+  Sebagai percobaan Anda dapat menggunakan bilangan acak normal sebagai hasil pengukuran.
+  \item fungsi \txtinline{saveData} untuk menyimpan waktu hasil pengukuran
+  ke suatu file (misalkan file CSV)
+  \end{itemize}
+\end{itemize}
+\end{soal}
+
+\begin{soal}
+Buat aplikasi Flutter dengan spesifikasi sebagai berikut:
+\begin{itemize}
+\item Judul aplikasi pada AppBar: Developer Info
+\item menampilkan foto Anda (close up), bisa berupa pass foto atau foto lain.
+\item menampilkan logo Akmet dengan ukuran lebih kecil dari foto.
+\item menampilkan nama dan NIM Anda pada dua baris terpisah
+\item Ketika foto Anda diklik, maka aplikasi akan memainkan file audio rekaman
+sendiri dengan suara Anda.
+\end{itemize}
+\end{soal}
+
+\bibliographystyle{unsrt}
+\bibliography{BIBLIO}
+
+\end{document}
