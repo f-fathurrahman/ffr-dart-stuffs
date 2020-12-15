@@ -20,7 +20,8 @@ import 'package:flutter/material.dart';
 //import 'test_checkbox03.dart';
 //import 'example_input_01.dart';
 //import 'example_form_01.dart';
-import 'example_form_02.dart';
+//import 'example_form_02.dart';
+import 'test_route_01.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: ExampleForm02Page(),
+      home: FirstRoute(),
+      //home: ExampleForm02Page(),
       //home: ExampleForm01Page(),
       //home: ExampleInput01(),
       //home: MyHome(),
