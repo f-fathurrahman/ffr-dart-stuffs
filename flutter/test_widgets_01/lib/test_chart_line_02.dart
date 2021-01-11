@@ -9,13 +9,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Test Plot',
+      title: 'Quiz 2 Fluter',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Line/Area Charts'),
+          title: Text('Plot Fungsi'),
         ),
         backgroundColor: Colors.white,
         body: Container(
@@ -57,7 +57,7 @@ class SimpleLineChart extends StatelessWidget {
     double deltax = (xf - xi)/(Ndata-1);
     for(int i = 0; i < Ndata; i++) {
       double x = xi + i*deltax;
-      double y = math.cos(2*math.pi*x/L) * math.sin(4*math.pi*x/L);
+      double y = math.sin(2*math.pi*x/L); //* math.sin(4*math.pi*x/L);
       data.add(Point(x,y));
       print('x = $x, y = $y');
     }
